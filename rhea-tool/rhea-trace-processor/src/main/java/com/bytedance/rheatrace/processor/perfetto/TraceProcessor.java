@@ -62,7 +62,7 @@ public class TraceProcessor extends AbstractTraceGenerator {
         TraceAssembler.assemble(systemTrace, binaryFrame, aTrace);
         File output = Workspace.output();
         try (FileOutputStream out = new FileOutputStream(output)) {
-            Log.red("writing trace:" + output);
+            Log.red("writing trace: " + output.toPath().toUri());
             systemTrace.build().writeTo(out);
         }
     }

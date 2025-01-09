@@ -151,7 +151,9 @@ public class Adb {
         public static void download(String fileName, File destination) throws IOException {
             try {
                 Arguments arg = Arguments.get();
-                FileUtils.copyInputStreamToFile(new URL("http://localhost:" + arg.port + "?name=" + fileName).openStream(), destination);
+                URL url = new URL("http://localhost:" + arg.port + "?name=" + fileName);
+                Log.i("Host: " + url);
+                FileUtils.copyInputStreamToFile(url.openStream(), destination);
             } catch (Throwable e) {
                 checkAppStarted();
                 checkRheaTraceIntegration();

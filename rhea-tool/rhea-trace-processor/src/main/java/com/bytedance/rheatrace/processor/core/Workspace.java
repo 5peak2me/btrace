@@ -54,7 +54,7 @@ public class Workspace {
                 throw new TraceError("can not create dir " + workspace, "you can retry or create the directory by your self:" + workspace);
             }
             FileUtils.cleanDirectory(workspace);
-            Log.i("workspace clear: " + workspace.getAbsolutePath());
+            Log.i("workspace clear: " + workspace.toPath().toUri());
         } catch (IOException e) {
             throw new TraceError(e.getMessage(), "you can retry or create the directory by your self:" + Workspace.root());
         }

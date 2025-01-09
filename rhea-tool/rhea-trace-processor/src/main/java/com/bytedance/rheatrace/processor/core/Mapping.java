@@ -48,7 +48,7 @@ public class Mapping {
         version = version.substring(1);
         File file = new File(MAPPING_DIR, version);
         if (file.exists()) {
-            Log.i("reuse cached mapping:" + file);
+            Log.i("reuse cached mapping: " + file.toPath().toUri());
         } else {
             // 3. mapping in apk
             Log.i("downloading mapping");

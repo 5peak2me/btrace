@@ -165,7 +165,7 @@ public class Main {
                 long currentSize = appTraceBuffer.optLong("currentSize");
                 long maxSize = appTraceBuffer.optLong("maxSize");
                 if (currentSize <= maxSize) {
-                    Log.blue("MaxAppTraceBufferSize usage " + currentSize + "/" + maxSize + " (" + (currentSize * 100 / maxSize) + "%)");
+                    Log.blue("MaxAppTraceBufferSize usage " + currentSize + "/" + maxSize + " (" + (currentSize * 100f / maxSize) + "%)");
                 } else {
                     Log.red("MaxAppTraceBufferSize is too small. Expected " + currentSize + " Actual " + maxSize + ". Add `-maxAppTraceBufferSize " + currentSize + "` to your command");
                 }
