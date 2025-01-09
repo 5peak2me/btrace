@@ -25,9 +25,11 @@ aux_source_directory(src/main/cpp/hook SRC_DIR_ATRACE_HOOK)
 aux_source_directory(src/main/cpp/features/render SRC_DIR_ATRACE_RENDER)
 aux_source_directory(src/main/cpp/features/block SRC_DIR_ATRACE_BLOCK)
 aux_source_directory(src/main/cpp/features/klass SRC_DIR_ATRACE_CLASS)
-aux_source_directory(src/main/cpp/hook SRC_DIR_ATRACE_HOOK)
 aux_source_directory(src/main/cpp/features/thread SRC_DIR_ATRACE_THREAD)
 aux_source_directory(src/main/cpp/features/binder SRC_DIR_ATRACE_BINDER)
+
+find_package(bytehook REQUIRED CONFIG)
+find_package(shadowhook REQUIRED CONFIG)
 
 add_library(rhea-trace
   SHARED
@@ -48,7 +50,6 @@ add_library(rhea-trace
 
 find_library(log-lib log)
 
-
 target_include_directories(${TARGET} PUBLIC
   ${BITS_HEADER_DIR}
 )
@@ -57,5 +58,6 @@ target_link_libraries(${TARGET}
   ${log-lib}
   utils
   fastlog
-  ${BITS_SO_DIR}/${CMAKE_ANDROID_ARCH_ABI}/libbytehook.so
+  bytehook::bytehook
+  shadowhook::shadowhook
 )

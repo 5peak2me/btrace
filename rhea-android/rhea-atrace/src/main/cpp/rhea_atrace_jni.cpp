@@ -23,7 +23,7 @@
 #include <unistd.h>
 #include <utils/build.h>
 #include <features/binder/binder_proxy.h>
-#include <second_party/byte_hook/shadowhook.h>
+#include <shadowhook.h>
 #include "atrace.h"
 #include "trace_provider.h"
 #include "features/render/render_proxy.h"

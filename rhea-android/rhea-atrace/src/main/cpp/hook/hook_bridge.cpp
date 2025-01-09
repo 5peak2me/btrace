@@ -28,7 +28,7 @@
 #include <utils/build.h>
 #include <utils/debug.h>
 #include <utils/timers.h>
-#include <second_party/byte_hook/bytehook.h>
+#include <bytehook.h>
 #include <features/klass/class_linker_proxy.h>
 #include <features/thread/thread_proxy.h>
 #include <features/binder/binder_proxy.h>

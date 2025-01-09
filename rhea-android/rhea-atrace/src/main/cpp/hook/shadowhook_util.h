@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "second_party/byte_hook/shadowhook.h"
+#include "shadowhook.h"
 
 namespace bytedance {
     namespace atrace {

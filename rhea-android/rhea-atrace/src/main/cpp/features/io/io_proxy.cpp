@@ -21,7 +21,7 @@
 #include <utils/strings.h>
 #include <utils/timers.h>
 
-#include "second_party/byte_hook/bytehook.h"
+#include "bytehook.h"
 #include "trace_provider.h"
 #include "atrace.h"
 #include "trace.h"

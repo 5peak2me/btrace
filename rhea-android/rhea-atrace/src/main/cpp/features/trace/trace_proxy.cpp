@@ -17,7 +17,7 @@
 #include <utils/debug.h>
 #include <unistd.h>
 
-#include "second_party/byte_hook/bytehook.h"
+#include "bytehook.h"
 
 #include "trace_provider.h"
 #include "trace_proxy.h"

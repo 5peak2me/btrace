@@ -42,6 +42,9 @@ android {
             path "CMakeLists.txt"
         }
     }
+    buildFeatures {
+        prefab true
+    }
 }
 
 dependencies {
@@ -49,8 +52,8 @@ dependencies {
 //    implementation project(':rhea-common')
     implementation "com.bytedance.btrace:rhea-common:2.0.1"
     compileOnly files('libs/dalvik.critical.jar')
-    implementation 'com.bytedance.android:shadowhook:1.0.2'
-    implementation "com.bytedance:bytehook:1.0.3"
+    implementation 'com.bytedance.android:shadowhook:1.1.1'
+    implementation "com.bytedance:bytehook:1.1.1"
 }
 
 version POM_VERSION_NAME

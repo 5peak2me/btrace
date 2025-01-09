@@ -17,7 +17,7 @@
 #include <trace.h>
 #include <sys/mman.h>
 #include <sys/user.h>
-#include <second_party/byte_hook/shadowhook.h>
+#include <shadowhook.h>
 #include <debug.h>
 #include <cstring>
 #include <functional>

@@ -17,7 +17,7 @@
 #include <vector>
 #include "shadowhook_util.h"
 #include "utils/debug.h"
-#include "second_party/byte_hook/shadowhook.h"
+#include "shadowhook.h"
 
 namespace bytedance {
     namespace atrace {
