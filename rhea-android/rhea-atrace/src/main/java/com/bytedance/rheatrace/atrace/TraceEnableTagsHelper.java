@@ -35,20 +35,16 @@ final class TraceEnableTagsHelper {
 
     static boolean updateEnableTags() {
         if (nativeGetEnabledTags_method == null) {
-            if (Build.VERSION.SDK_INT >= 35) {
-                try {
+            try {
+                if (Build.VERSION.SDK_INT >= 35) {
                     nativeGetEnabledTags_method = ReflectUtil.INSTANCE.getDeclaredMethodRecursive(Trace.class, "nativeIsTagEnabled", long.class);
-                } catch (Throwable e) {
-                    Log.d(TAG, "failed to reflect method nativeIsTagEnabled of Trace.class!");
-                    return false;
-                }
-            } else {
-                try {
+                } else {
                     nativeGetEnabledTags_method = ReflectUtil.INSTANCE.getDeclaredMethodRecursive(Trace.class, "nativeGetEnabledTags");
-                } catch (Throwable e) {
-                    Log.d(TAG, "failed to reflect method nativeGetEnabledTags of Trace.class!");
-                    return false;
                 }
+            } catch (Throwable e) {
+                String method = Build.VERSION.SDK_INT >= 35 ? "nativeIsTagEnabled" : "nativeGetEnabledTags";
+                Log.d(TAG, "failed to reflect method " + method + " of Trace.class!");
+                return false;
             }
         }
         if (sEnabledTags == null) {
