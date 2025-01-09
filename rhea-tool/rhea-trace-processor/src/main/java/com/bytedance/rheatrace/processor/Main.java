@@ -62,7 +62,7 @@ public class Main {
             AdbProp.setup();
             SystemLevelCapture sysCapture = getSystemLevelCapture();
             if (sysCapture instanceof PerfettoCapture) {
-                if (handlePerfettoQuickOuput(sysCapture, arg.systraceArgs)) {
+                if (handlePerfettoQuickOutput(sysCapture, arg.systraceArgs)) {
                     return;
                 }
             }
@@ -135,7 +135,7 @@ public class Main {
         }
     }
 
-    private static boolean handlePerfettoQuickOuput(SystemLevelCapture sysCapture, String[] systraceArgs) throws IOException, InterruptedException {
+    private static boolean handlePerfettoQuickOutput(SystemLevelCapture sysCapture, String[] systraceArgs) throws IOException, InterruptedException {
         boolean contains = false;
         List<String> quick = Arrays.asList("-h", "--list", "--list-ftrace");
         for (String arg : systraceArgs) {

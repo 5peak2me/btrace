@@ -16,6 +16,7 @@
 
 package com.bytedance.rheatrace.atrace;
 
+import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
 
@@ -34,11 +35,20 @@ final class TraceEnableTagsHelper {
 
     static boolean updateEnableTags() {
         if (nativeGetEnabledTags_method == null) {
-            try {
-                nativeGetEnabledTags_method = ReflectUtil.INSTANCE.getDeclaredMethodRecursive(Trace.class, "nativeGetEnabledTags");
-            } catch (Throwable e) {
-                Log.d(TAG, "failed to reflect method nativeGetEnabledTags of Trace.class!");
-                return false;
+            if (Build.VERSION.SDK_INT >= 35) {
+                try {
+                    nativeGetEnabledTags_method = ReflectUtil.INSTANCE.getDeclaredMethodRecursive(Trace.class, "nativeIsTagEnabled", long.class);
+                } catch (Throwable e) {
+                    Log.d(TAG, "failed to reflect method nativeIsTagEnabled of Trace.class!");
+                    return false;
+                }
+            } else {
+                try {
+                    nativeGetEnabledTags_method = ReflectUtil.INSTANCE.getDeclaredMethodRecursive(Trace.class, "nativeGetEnabledTags");
+                } catch (Throwable e) {
+                    Log.d(TAG, "failed to reflect method nativeGetEnabledTags of Trace.class!");
+                    return false;
+                }
             }
         }
         if (sEnabledTags == null) {
@@ -50,7 +60,12 @@ final class TraceEnableTagsHelper {
             }
         }
         try {
-            sEnabledTags.set(null, nativeGetEnabledTags_method.invoke(null));
+            if (Build.VERSION.SDK_INT >= 35) {
+                Object invoked = nativeGetEnabledTags_method.invoke(null, 1L << 12);
+                Log.d(TAG, invoked + "");
+            } else {
+                sEnabledTags.set(null, nativeGetEnabledTags_method.invoke(null));
+            }
         } catch (Throwable e) {
             Log.d(TAG, "failed to update enable tags for Trace.class!");
             return false;

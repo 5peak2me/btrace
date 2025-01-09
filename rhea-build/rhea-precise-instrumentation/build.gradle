@@ -13,4 +13,4 @@ dependencies {
     implementation project(":rhea-build-common")
 }
 apply from: rootProject.file('gradle/java-artifacts.gradle')
-apply from: rootProject.file('gradle/gradle-maven-upload.gradle')
+//apply from: rootProject.file('gradle/gradle-maven-upload.gradle')

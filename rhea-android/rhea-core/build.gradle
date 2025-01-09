@@ -33,11 +33,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':rhea-atrace')
-    implementation project(':rhea-common')
+//    implementation project(':rhea-atrace')
+//    implementation "com.bytedance.btrace:rhea-atrace:2.0.1"
+    implementation "com.bytedance.btrace:rhea-atrace:2.0.3.1"
+//    implementation project(':rhea-common')
+    implementation "com.bytedance.btrace:rhea-common:2.0.1"
     implementation 'androidx.core:core:1.3.2'
     implementation 'org.nanohttpd:nanohttpd:2.2.0'
 }
 
 apply from: rootProject.file('gradle/android-artifacts.gradle')
-apply from: rootProject.file('gradle/gradle-maven-upload.gradle')
+//apply from: rootProject.file('gradle/gradle-maven-upload.gradle')

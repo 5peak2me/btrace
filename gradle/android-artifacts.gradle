@@ -14,7 +14,7 @@ task androidJavadocs(type: Javadoc) {
         if (variant.name == 'release') {
             try {
                 owner.classpath += variant.getJavaCompileProvider().get().classpath
-            } catch(Exception e) {
+            } catch (Exception e) {
                 owner.classpath += variant.getJavaCompile().classpath
             }
         }
@@ -37,4 +37,50 @@ task androidSourcesJar(type: Jar) {
 artifacts {
     archives androidSourcesJar
     archives androidJavadocsJar
+}
+
+afterEvaluate {
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = project.group
+                artifactId = project.name
+                version = project.version
+                from components.release
+                pom {
+                    name = 'My Library'
+                    description = 'A concise description of my library'
+                    url = 'http://www.example.com/library'
+                    properties = [
+                            myProp          : "value",
+                            "prop.with.dots": "anotherValue"
+                    ]
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'J!nl!n'
+                            name = 'J!nl!n'
+                            email = 'djl461260911@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://example.com/my-library.git'
+                        developerConnection = 'scm:git:ssh://example.com/my-library.git'
+                        url = 'http://example.com/my-library/'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                url = rootProject.layout.buildDirectory.dir('repo')
+            }
+        }
+    }
 }

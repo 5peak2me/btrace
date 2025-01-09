@@ -26,6 +26,7 @@ public class TraceError extends RuntimeException {
     public TraceError(String error, String prompt, Throwable cause) {
         super(error, cause);
         this.prompt = prompt;
+        cause.printStackTrace();
     }
 
     public String getPrompt() {
